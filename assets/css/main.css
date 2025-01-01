@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+       @font-face {
+         font-family: Pinar;
+         font-style: normal;
+         font-weight: 300;
+         font-display: swap;
+         src: url("../fonts/pinar/Pinar-FD-light.woff2");
+       }
+       
+       @font-face {
+         font-family: Pinar;
+         font-style: normal;
+         font-weight: 400;
+         font-display: swap;
+         src: url("../fonts/pinar/Pinar-FD-Regular.woff2");
+       }
+       
+       @font-face {
+         font-family: Pinar;
+         font-style: normal;
+         font-weight: 500;
+         font-display: swap;
+         src: url("../fonts/pinar/Pinar-FD-Medium.woff2");
+       }
+       
+       @font-face {
+         font-family: Pinar;
+         font-style: normal;
+         font-weight: 600;
+         font-display: swap;
+         src: url("../fonts/pinar/Pinar-FD-SemiBold.woff2");
+       }
+       
+       @font-face {
+         font-family: Pinar;
+         font-style: normal;
+         font-weight: 700;
+         font-display: swap;
+         src: url("../fonts/pinar/Pinar-FD-Bold.woff2");
+       }
+       
+       @font-face {
+         font-family: Pinar;
+         font-style: normal;
+         font-weight: 800;
+         font-display: swap;
+         src: url("../fonts/pinar/Pinar-FD-ExtraBold.woff2");
+       }
+       
+       @font-face {
+         font-family: Pinar;
+         font-style: normal;
+         font-weight: 900;
+         font-display: swap;
+         src: url("../fonts/pinar/Pinar-FD-Black.woff2");
+       }
+       body{
+         font-family: Pinar, sans-serif;
+         @apply bg-[#F5EFE7]
+       }
+     }
