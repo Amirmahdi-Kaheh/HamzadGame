@@ -34,8 +34,12 @@ export const useGame = () => {
 
   // Generate card values (pairs of values)
   const generateCardValues = () => {
-    const values = ['🍎', '🍌', '🍇', '🍓', '🍍', '🥝', '🥹', '😍']; // Example emojis
-    return [...values, ...values]; // Duplicate to create pairs
+    const gameChallengeCookie = useCookie('GameChallenge');
+    const userChallengeType = ref(gameChallengeCookie.value || 'image')
+    
+    const emojiList = ['🍔', '🍌', '🚀', '🍓', '🍍', '🥝', '👻', '🐈']; // Example emojis
+    const imageList = ['/products/product-1.jpg', '/products/product-2.jpg', '/products/product-3.jpg', '/products/product-4.jpg', '/products/product-5.jpg', '/products/product-6.jpg', '/products/product-7.jpg', '/products/product-8.jpg']; // Example emojis
+    return userChallengeType.value === 'image' ? [...imageList, ...imageList] : [...emojiList, ...emojiList] // Duplicate to create pairs
   };
 
   // Shuffle the cards
