@@ -1,12 +1,13 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
-  ssr: false,
+  ssr: true,
+
   app: {
     pageTransition: { name: "page", mode: "out-in" },
 
     head: {
-      title: 'بازی همزاد - کارت های همزاد رو پیدا کن',
+      title: 'همزاد - کارت های یکسان رو پیدا کن',
       htmlAttrs: {
         lang: "fa",
         dir: "rtl",
@@ -23,12 +24,22 @@ export default defineNuxtConfig({
       ],
     },
   },
+
+  runtimeConfig: {
+    public: {
+      githubRepo: process.env.GITHUB_REPO
+    }
+  },
+
   devtools: { enabled: true },
   css: ['~/assets/css/main.css'],
+
   postcss: {
     plugins: {
       tailwindcss: {},
       autoprefixer: {},
     },
   },
+
+  modules: ["@nuxt/icon"],
 })
