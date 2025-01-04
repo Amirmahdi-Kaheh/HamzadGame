@@ -1,4 +1,4 @@
-<img src="https://github.com/Amirmahdi-Kaheh/HamzadGame/blob/main/assets/image/project-cover.jpg?raw=true"></img>
+<img src="https://github.com/Amirmahdi-Kaheh/HamzadGame/blob/main/assets/images/project-cover.jpg?raw=true"></img>
 
 <h1 align="center">Hamzad Game</h1>
 <div align="center">
