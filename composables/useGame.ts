@@ -8,9 +8,9 @@ export const useGame = () => {
     flippedCards: [], // Temporarily holds up to two flipped cards
     matchedCards: [], // Stores matched card IDs
     isProcessing: false, // Prevents multiple flips during checks
-    moves: config.public.gameMoves,
+    moves: +config.public.gameMoves,
     timer: null,
-    timeLeft: config.public.gameTime, // Example: 60 seconds to finish the game
+    timeLeft: +config.public.gameTime, // Example: 60 seconds to finish the game
     gameOver: false,
     isRunning: false,
   });
@@ -32,8 +32,8 @@ export const useGame = () => {
     state.flippedCards = [];
     state.matchedCards = [];
     state.isProcessing = false;
-    state.moves = config.public.gameMoves;
-    state.timeLeft = config.public.gameTime;
+    state.moves = +config.public.gameMoves;
+    state.timeLeft = +config.public.gameTime;
     state.gameOver = false;
     state.isRunning = false;
     clearInterval(state.timer);
@@ -135,7 +135,7 @@ export const useGame = () => {
 
   const calculateReward = () => {
     // calculate by timeLeft and moveLeft
-    return state.timeLeft * state.moves
+    return (state.timeLeft || 1) * (state.moves || 1)
   }
 
   const setScoreByStorage = () => {
@@ -146,6 +146,18 @@ export const useGame = () => {
   const updateScoreStorage = () => {
     const scoreCookie = useCookie('Score');
     scoreCookie.value = state.score + calculateReward();
+  }
+
+  const handleBoostMove = () => {
+    if(state.timeLeft <= 30) return
+    state.timeLeft -= 20;
+    state.moves += 4;
+  }
+
+  const handleBoostTime = () => {
+    if(state.moves <= 6) return
+    state.timeLeft += 15;
+    state.moves -= 4;
   }
 
   // Computed properties
@@ -169,6 +181,8 @@ export const useGame = () => {
     startGame,
     handleCardFlip,
     calculateReward,
-    restartGame
+    restartGame,
+    handleBoostMove,
+    handleBoostTime
   };
 };

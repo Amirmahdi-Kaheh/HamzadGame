@@ -26,13 +26,13 @@
 
     <div class="fixed -bottom-full left-0 p-6 pb-6 w-full flex items-center justify-center transition-all duration-1000" :class="{'!bottom-0': isRunning && !gameOver}">
       <div class="lg:w-96 w-full grid grid-cols-2 gap-x-4">
-        <!-- Restart Button -->
-        <BaseButton size="medium" class="!bg-black !rounded-xl flex flex-col gap-y-1" :class="{'pointer-events-none opacity-50': moves <= 6}">
+        <!-- Boost Button -->
+        <BaseButton @click="handleBoostMove" size="medium" class="!bg-black !rounded-xl flex flex-col gap-y-1" :class="{'pointer-events-none opacity-50': timeLeft <= 30}">
           <Icon name="ph:sneaker-move-fill" size="24"></Icon>
           <span class="text-base font-semibold">۴ حرکت اضافه</span>
           <span class="py-1 px-4 rounded-full bg-primary">۲۰ ثانیه</span>
         </BaseButton>
-        <BaseButton  size="medium" class="!bg-black !rounded-xl flex flex-col gap-y-1" :class="{'pointer-events-none opacity-50': timeLeft <= 20}">
+        <BaseButton @click="handleBoostTime" size="medium" class="!bg-black !rounded-xl flex flex-col gap-y-1" :class="{'pointer-events-none opacity-50': moves <= 6}">
           <Icon name="ph:clock-countdown-fill" size="24"></Icon>
           <span class="text-base font-semibold">۱۵ ثانیه اضافه</span>
           <span class="py-1 px-4 rounded-full bg-primary">۴ حرکت</span>
@@ -64,7 +64,7 @@
         <div v-else class="flex flex-col items-center justify-center gap-y-6 text-center">
           <img src="@/assets/images/errors/fail.svg" alt="">
           <h4 class="font-bold text-2xl">باختی!</h4>
-          <p v-if="moves === 0">متاسفانه حرکت هات تموم شد. می تونی مجددا تلاش کنی تا امتیاز بدست بیاری</p>
+          <p v-if="moves === 0">متاسفانه حرکاتت تموم شد. می تونی مجددا تلاش کنی تا امتیاز بدست بیاری</p>
           <p v-else-if="timeLeft === 0">متاسفانه زمانت تموم شد. می تونی مجددا تلاش کنی تا امتیاز بدست بیاری</p>
 
           <BaseButton class="w-full" @click="initializeGame">
@@ -80,7 +80,7 @@
 import { useGame } from '@/composables/useGame';
 import {formatPrice} from "~/utils/numbers";
 const gameChallengeCookie = useCookie('GameChallenge');
-const { cards, gameOver, moves, timeLeft, isRunning, isUserWon, startGame, restartGame, initializeGame, handleCardFlip, calculateReward } = useGame();
+const { cards, gameOver, moves, timeLeft, isRunning, isUserWon, startGame, restartGame, initializeGame, handleCardFlip, calculateReward, handleBoostMove, handleBoostTime } = useGame();
 onMounted(() => initializeGame());
 watch(gameChallengeCookie, ()=> {
   initializeGame()

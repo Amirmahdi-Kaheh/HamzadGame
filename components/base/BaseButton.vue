@@ -5,6 +5,7 @@ defineProps({
   size: { type: String, default: 'medium' }, // Sizes: small, medium, large
   disabled: { type: Boolean, default: false },
 });
+const emit = defineEmits(['click'])
 </script>
 
 <template>
@@ -12,7 +13,7 @@ defineProps({
       :type="type"
       :class="['base-button', variant, size, { 'base-button--disabled': disabled }]"
       :disabled="disabled"
-      @click="$emit('click')"
+      @click.prevent="emit('click')"
   >
     <slot />
   </button>
