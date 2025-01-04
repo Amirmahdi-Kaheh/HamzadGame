@@ -10,9 +10,9 @@
                   <span class="font-bold text-base">{{formatPrice(scoreCookie ?? 0)}}</span>
                   <img src="@/assets/images/logo.png" class="w-3 h-3 rotate-45" loading="lazy" alt="">
                 </div>
-                <FeatureGameSetting></FeatureGameSetting>
+                <FeatureGameSetting/>
                 <button class="h-12 w-12 flex items-center justify-center rounded-lg border-2 border-[#D8C4B6] active:scale-90 transition-all">
-                  <Icon name="ph:sun-fill" size="20"></Icon>
+                  <Icon name="ph:sun-fill" size="20"/>
                 </button>
               </div>
    </div>

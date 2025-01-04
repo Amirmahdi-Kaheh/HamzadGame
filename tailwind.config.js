@@ -12,14 +12,13 @@ export default {
     extend: {
       colors: {
         primary: {
-          DEFAULT: "#ff5c35"
+          DEFAULT: "#ff5c35",
         },
         secondary: {
-          DEFAULT: "#333333"
-        }
-      }
+          DEFAULT: "#333333",
+        },
+      },
     },
   },
   plugins: [],
 }
-

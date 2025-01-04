@@ -1,13 +1,13 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: '2024-11-01',
+  compatibilityDate: "2024-11-01",
   ssr: true,
 
   app: {
     pageTransition: { name: "page", mode: "out-in" },
 
     head: {
-      title: 'همزاد - کارت های یکسان رو پیدا کن',
+      title: "همزاد - کارت های یکسان رو پیدا کن",
       htmlAttrs: {
         lang: "fa",
         dir: "rtl",
@@ -29,12 +29,12 @@ export default defineNuxtConfig({
     public: {
       githubRepo: process.env.GITHUB_REPO,
       gameMoves: process.env.GAME_MOVES,
-      gameTime: process.env.GAME_TIME
-    }
+      gameTime: process.env.GAME_TIME,
+    },
   },
 
   devtools: { enabled: true },
-  css: ['~/assets/css/main.css'],
+  css: ["~/assets/css/main.css"],
 
   postcss: {
     plugins: {
@@ -43,5 +43,5 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ["@nuxt/icon", '@nuxt/eslint'],
+  modules: ["@nuxt/icon", "@nuxt/eslint"],
 })

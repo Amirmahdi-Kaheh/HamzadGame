@@ -4,7 +4,7 @@
                 <h4 class="font-black text-2xl text-primary">همزاد</h4>
               </div>
 
-              <Icon name="svg-spinners:3-dots-scale" size="32"></Icon>
+              <Icon name="svg-spinners:3-dots-scale" size="32"/>
             </div>
 </template>
 

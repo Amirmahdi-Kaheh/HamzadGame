@@ -1,19 +1,24 @@
 <script setup lang="ts">
 defineProps({
-  type: { type: String, default: 'button' }, // Supports 'button', 'submit', 'reset'
-  variant: { type: String, default: 'primary' }, // Variants: primary, secondary, danger, etc.
-  size: { type: String, default: 'medium' }, // Sizes: small, medium, large
+  type: { type: String, default: "button" }, // Supports 'button', 'submit', 'reset'
+  variant: { type: String, default: "primary" }, // Variants: primary, secondary, danger, etc.
+  size: { type: String, default: "medium" }, // Sizes: small, medium, large
   disabled: { type: Boolean, default: false },
-});
-const emit = defineEmits(['click'])
+})
+const emit = defineEmits(["click"])
 </script>
 
 <template>
   <button
-      :type="type"
-      :class="['base-button', variant, size, { 'base-button--disabled': disabled }]"
-      :disabled="disabled"
-      @click.prevent="emit('click')"
+    :type="type"
+    :class="[
+      'base-button',
+      variant,
+      size,
+      { 'base-button--disabled': disabled },
+    ]"
+    :disabled="disabled"
+    @click.prevent="emit('click')"
   >
     <slot />
   </button>
@@ -25,7 +30,7 @@ const emit = defineEmits(['click'])
 }
 
 .base-button.primary {
-  @apply bg-primary text-white
+  @apply bg-primary text-white;
 }
 
 .base-button.secondary {
@@ -37,7 +42,7 @@ const emit = defineEmits(['click'])
 }
 
 .base-button.small {
-  @apply px-4 py-1.5 text-sm
+  @apply px-4 py-1.5 text-sm;
 }
 
 .base-button.medium {

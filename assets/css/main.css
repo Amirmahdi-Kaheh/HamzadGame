@@ -10,7 +10,7 @@
          font-display: swap;
          src: url("../fonts/pinar/Pinar-FD-light.woff2");
        }
-       
+
        @font-face {
          font-family: Pinar;
          font-style: normal;
@@ -18,7 +18,7 @@
          font-display: swap;
          src: url("../fonts/pinar/Pinar-FD-Regular.woff2");
        }
-       
+
        @font-face {
          font-family: Pinar;
          font-style: normal;
@@ -26,7 +26,7 @@
          font-display: swap;
          src: url("../fonts/pinar/Pinar-FD-Medium.woff2");
        }
-       
+
        @font-face {
          font-family: Pinar;
          font-style: normal;
@@ -34,7 +34,7 @@
          font-display: swap;
          src: url("../fonts/pinar/Pinar-FD-SemiBold.woff2");
        }
-       
+
        @font-face {
          font-family: Pinar;
          font-style: normal;
@@ -42,7 +42,7 @@
          font-display: swap;
          src: url("../fonts/pinar/Pinar-FD-Bold.woff2");
        }
-       
+
        @font-face {
          font-family: Pinar;
          font-style: normal;
@@ -50,7 +50,7 @@
          font-display: swap;
          src: url("../fonts/pinar/Pinar-FD-ExtraBold.woff2");
        }
-       
+
        @font-face {
          font-family: Pinar;
          font-style: normal;
@@ -61,5 +61,6 @@
        body{
          font-family: Pinar, sans-serif;
          @apply bg-[#F5EFE7]
+         /* dark:bg-[#333333] dark:text-white */
        }
      }

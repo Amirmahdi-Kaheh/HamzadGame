@@ -1,4 +1,4 @@
-import { reactive, computed } from 'vue';
+import { reactive, computed } from "vue"
 
 export const useGame = () => {
   const config = useRuntimeConfig()
@@ -13,125 +13,136 @@ export const useGame = () => {
     timeLeft: +config.public.gameTime, // Example: 60 seconds to finish the game
     gameOver: false,
     isRunning: false,
-  });
+  })
 
   // Initialize the game
   const initializeGame = () => {
-    setScoreByStorage();
-    const cardValues = generateCardValues();
+    setScoreByStorage()
+    const cardValues = generateCardValues()
     state.cards = shuffle(cardValues).map((value: string, index: number) => ({
       id: index,
       value,
       flipped: false,
       matched: false,
-    }));
+    }))
     resetGame()
-  };
+  }
 
   const resetGame = () => {
-    state.flippedCards = [];
-    state.matchedCards = [];
-    state.isProcessing = false;
-    state.moves = +config.public.gameMoves;
-    state.timeLeft = +config.public.gameTime;
-    state.gameOver = false;
-    state.isRunning = false;
-    clearInterval(state.timer);
+    state.flippedCards = []
+    state.matchedCards = []
+    state.isProcessing = false
+    state.moves = +config.public.gameMoves
+    state.timeLeft = +config.public.gameTime
+    state.gameOver = false
+    state.isRunning = false
+    clearInterval(state.timer)
   }
 
   const restartGame = () => {
-    initializeGame();
-    startGame();
+    initializeGame()
+    startGame()
   }
 
   const startGame = () => {
-    state.isRunning = true;
-    if (state.timer) clearInterval(state.timer);
+    state.isRunning = true
+    if (state.timer) clearInterval(state.timer)
     startTimer()
   }
 
   // Generate card values (pairs of values)
   const generateCardValues = () => {
-    const gameChallengeCookie = useCookie('GameChallenge');
-    const userChallengeType = ref(gameChallengeCookie.value || 'image')
+    const gameChallengeCookie = useCookie("GameChallenge")
+    const userChallengeType = ref(gameChallengeCookie.value || "image")
 
-    const emojiList = ['🍔', '🍌', '🚀', '🍓', '🍍', '🥝', '👻', '🐈']; // Example emojis
-    const imageList = ['/products/product-1.jpg', '/products/product-2.jpg', '/products/product-3.jpg', '/products/product-4.jpg', '/products/product-5.jpg', '/products/product-6.jpg', '/products/product-7.jpg', '/products/product-8.jpg']; // Example emojis
-    return userChallengeType.value === 'image' ? [...imageList, ...imageList] : [...emojiList, ...emojiList] // Duplicate to create pairs
-  };
+    const emojiList = ["🍔", "🍌", "🚀", "🍓", "🍍", "🥝", "👻", "🐈"] // Example emojis
+    const imageList = [
+      "/products/product-1.jpg",
+      "/products/product-2.jpg",
+      "/products/product-3.jpg",
+      "/products/product-4.jpg",
+      "/products/product-5.jpg",
+      "/products/product-6.jpg",
+      "/products/product-7.jpg",
+      "/products/product-8.jpg",
+    ] // Example emojis
+    return userChallengeType.value === "image"
+      ? [...imageList, ...imageList]
+      : [...emojiList, ...emojiList] // Duplicate to create pairs
+  }
 
   // Shuffle the cards
-  const shuffle = (array) => {
-    return array.sort(() => Math.random() - 0.5);
-  };
+  const shuffle = array => {
+    return array.sort(() => Math.random() - 0.5)
+  }
 
   // Handle card flip
-  const handleCardFlip = (cardId) => {
-    if(!state.isRunning && !state.gameOver) {
-      startGame();
+  const handleCardFlip = cardId => {
+    if (!state.isRunning && !state.gameOver) {
+      startGame()
     }
 
-    if(state.gameOver) return
-    if (state.isProcessing || state.matchedCards.includes(cardId)) return;
+    if (state.gameOver) return
+    if (state.isProcessing || state.matchedCards.includes(cardId)) return
 
-    const card = state.cards.find((c) => c.id === cardId);
-    if (!card || card.flipped) return;
+    const card = state.cards.find(c => c.id === cardId)
+    if (!card || card.flipped) return
 
-    card.flipped = true;
-    state.flippedCards.push(card);
-    state.moves--;
+    card.flipped = true
+    state.flippedCards.push(card)
+    state.moves--
 
     if (state.flippedCards.length === 2) {
-      checkForMatch();
+      checkForMatch()
     }
-    if(state.moves === 0) {
-      state.gameOver = true;
-      clearInterval(state.timer);
+    if (state.moves === 0) {
+      state.gameOver = true
+      clearInterval(state.timer)
     }
-  };
+  }
 
   // Check for a match
   const checkForMatch = () => {
-    state.isProcessing = true;
+    state.isProcessing = true
 
-    const [card1, card2] = state.flippedCards;
+    const [card1, card2] = state.flippedCards
     if (card1.value === card2.value) {
-      state.matchedCards.push(card1.id, card2.id);
-      card1.matched = true;
-      card2.matched = true;
+      state.matchedCards.push(card1.id, card2.id)
+      card1.matched = true
+      card2.matched = true
     } else {
       setTimeout(() => {
-        card1.flipped = false;
-        card2.flipped = false;
-      }, 600);
+        card1.flipped = false
+        card2.flipped = false
+      }, 600)
     }
 
-    state.flippedCards = [];
-    state.isProcessing = false;
+    state.flippedCards = []
+    state.isProcessing = false
 
-    checkGameOver();
-  };
+    checkGameOver()
+  }
 
   // Check if the game is over
   const checkGameOver = () => {
     if (state.matchedCards.length === state.cards.length) {
       updateScoreStorage()
-      state.gameOver = true;
-      clearInterval(state.timer);
+      state.gameOver = true
+      clearInterval(state.timer)
     }
-  };
+  }
 
   // Start the game timer
   const startTimer = () => {
     state.timer = setInterval(() => {
       if (state.timeLeft > 0) {
-        state.timeLeft--;
+        state.timeLeft--
       } else {
-        clearInterval(state.timer);
-        state.gameOver = true;
+        clearInterval(state.timer)
+        state.gameOver = true
       }
-    }, 1000);
-  };
+    }, 1000)
+  }
 
   const calculateReward = () => {
     // calculate by timeLeft and moveLeft
@@ -139,35 +150,37 @@ export const useGame = () => {
   }
 
   const setScoreByStorage = () => {
-    const scoreCookie = useCookie('Score');
+    const scoreCookie = useCookie("Score")
     state.score = scoreCookie.value || 0
   }
 
   const updateScoreStorage = () => {
-    const scoreCookie = useCookie('Score');
-    scoreCookie.value = state.score + calculateReward();
+    const scoreCookie = useCookie("Score")
+    scoreCookie.value = state.score + calculateReward()
   }
 
   const handleBoostMove = () => {
-    if(state.timeLeft <= 30) return
-    state.timeLeft -= 20;
-    state.moves += 4;
+    if (state.timeLeft <= 30) return
+    state.timeLeft -= 20
+    state.moves += 4
   }
 
   const handleBoostTime = () => {
-    if(state.moves <= 6) return
-    state.timeLeft += 15;
-    state.moves -= 4;
+    if (state.moves <= 6) return
+    state.timeLeft += 15
+    state.moves -= 4
   }
 
   // Computed properties
-  const moves = computed(() => state.moves);
-  const score = computed(() => state.score);
-  const timeLeft = computed(() => state.timeLeft);
-  const cards = computed(() => state.cards);
-  const gameOver = computed(() => state.gameOver);
-  const isRunning = computed(() => state.isRunning);
-  const isUserWon = computed(() => state.matchedCards.length === state.cards.length);
+  const moves = computed(() => state.moves)
+  const score = computed(() => state.score)
+  const timeLeft = computed(() => state.timeLeft)
+  const cards = computed(() => state.cards)
+  const gameOver = computed(() => state.gameOver)
+  const isRunning = computed(() => state.isRunning)
+  const isUserWon = computed(
+    () => state.matchedCards.length === state.cards.length,
+  )
 
   return {
     score,
@@ -183,6 +196,6 @@ export const useGame = () => {
     calculateReward,
     restartGame,
     handleBoostMove,
-    handleBoostTime
-  };
-};
+    handleBoostTime,
+  }
+}
