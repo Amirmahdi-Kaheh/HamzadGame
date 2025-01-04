@@ -78,25 +78,21 @@
           v-if="isUserWon"
           class="flex flex-col items-center justify-center gap-y-6 text-center"
         >
-          <img
-            src="@/assets/images/errors/processing.svg"
-            class="dark:invert"
-            alt=""
-          />
+          <img src="@/assets/images/success.svg" class="dark:invert" alt="" />
           <h4 class="font-bold text-2xl text-green-600">بردی!</h4>
           <p>تونستی همه همزاد ها رو پیدا کنی! تبریک میگم</p>
           <div class="flex flex-col items-center gap-y-4 my-6">
             <span> امتیاز کسب شده: </span>
             <div class="flex items-center justify-center gap-x-4">
+              <span class="font-bold text-xl">{{
+                formatPrice(calculateReward())
+              }}</span>
               <img
                 src="@/assets/images/logo.png"
                 class="w-5 h-5 rotate-45"
                 loading="lazy"
                 alt=""
               />
-              <span class="font-bold text-xl">{{
-                formatPrice(calculateReward())
-              }}</span>
             </div>
           </div>
           <BaseButton class="w-full" @click="initializeGame">
@@ -107,11 +103,7 @@
           v-else
           class="flex flex-col items-center justify-center gap-y-6 text-center"
         >
-          <img
-            src="@/assets/images/errors/fail.svg"
-            class="dark:invert"
-            alt=""
-          />
+          <img src="@/assets/images/fail.svg" class="dark:invert" alt="" />
           <h4 class="font-bold text-2xl">باختی!</h4>
           <p v-if="moves === 0">
             متاسفانه حرکاتت تموم شد. می تونی مجددا تلاش کنی تا امتیاز بدست بیاری
