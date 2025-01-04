@@ -27,7 +27,9 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
-      githubRepo: process.env.GITHUB_REPO
+      githubRepo: process.env.GITHUB_REPO,
+      gameMoves: process.env.GAME_MOVES,
+      gameTime: process.env.GAME_TIME
     }
   },
 

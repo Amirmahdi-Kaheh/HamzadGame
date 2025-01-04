@@ -1,7 +1,7 @@
 <template>
        <div class="w-full flex items-center justify-between gap-y-4 py-6">
               <div class="flex items-center gap-x-4">
-                     <img src="@/assets/images/logo.png" class="w-8 h-8" alt="">
+                     <img src="@/assets/images/logo.png" class="w-7 h-7 rotate-45" alt="">
                       <h1 class="text-xl font-black">همزاد</h1>
               </div>
 

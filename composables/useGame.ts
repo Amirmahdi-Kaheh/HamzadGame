@@ -1,15 +1,17 @@
 import { reactive, computed } from 'vue';
 
 export const useGame = () => {
+  const config = useRuntimeConfig()
   const state = reactive({
     cards: [],
     flippedCards: [], // Temporarily holds up to two flipped cards
     matchedCards: [], // Stores matched card IDs
     isProcessing: false, // Prevents multiple flips during checks
-    moves: 40,
+    moves: config.public.gameMoves,
     timer: null,
-    timeLeft: 120, // Example: 60 seconds to finish the game
+    timeLeft: config.public.gameTime, // Example: 60 seconds to finish the game
     gameOver: false,
+    isRunning: false,
   });
 
   // Initialize the game
@@ -21,22 +23,35 @@ export const useGame = () => {
       flipped: false,
       matched: false,
     }));
+    resetGame()
+  };
+
+  const resetGame = () => {
     state.flippedCards = [];
     state.matchedCards = [];
     state.isProcessing = false;
-    state.moves = 40;
-    state.timeLeft = 120;
+    state.moves = config.public.gameMoves;
+    state.timeLeft = config.public.gameTime;
     state.gameOver = false;
+    state.isRunning = false;
+  }
 
+  const restartGame = () => {
+    initializeGame();
+    startGame();
+  }
+
+  const startGame = () => {
+    state.isRunning = true;
     if (state.timer) clearInterval(state.timer);
-    startTimer();
-  };
+    startTimer()
+  }
 
   // Generate card values (pairs of values)
   const generateCardValues = () => {
     const gameChallengeCookie = useCookie('GameChallenge');
     const userChallengeType = ref(gameChallengeCookie.value || 'image')
-    
+
     const emojiList = ['🍔', '🍌', '🚀', '🍓', '🍍', '🥝', '👻', '🐈']; // Example emojis
     const imageList = ['/products/product-1.jpg', '/products/product-2.jpg', '/products/product-3.jpg', '/products/product-4.jpg', '/products/product-5.jpg', '/products/product-6.jpg', '/products/product-7.jpg', '/products/product-8.jpg']; // Example emojis
     return userChallengeType.value === 'image' ? [...imageList, ...imageList] : [...emojiList, ...emojiList] // Duplicate to create pairs
@@ -49,6 +64,11 @@ export const useGame = () => {
 
   // Handle card flip
   const handleCardFlip = (cardId) => {
+    if(!state.isRunning && !state.gameOver) {
+      startGame();
+    }
+
+    if(state.gameOver) return
     if (state.isProcessing || state.matchedCards.includes(cardId)) return;
 
     const card = state.cards.find((c) => c.id === cardId);
@@ -60,6 +80,10 @@ export const useGame = () => {
 
     if (state.flippedCards.length === 2) {
       checkForMatch();
+    }
+    if(state.moves === 0) {
+      state.gameOver = true;
+      clearInterval(state.timer);
     }
   };
 
@@ -76,7 +100,7 @@ export const useGame = () => {
       setTimeout(() => {
         card1.flipped = false;
         card2.flipped = false;
-      }, 1000);
+      }, 600);
     }
 
     state.flippedCards = [];
@@ -110,13 +134,19 @@ export const useGame = () => {
   const timeLeft = computed(() => state.timeLeft);
   const cards = computed(() => state.cards);
   const gameOver = computed(() => state.gameOver);
+  const isRunning = computed(() => state.isRunning);
+  const isUserWon = computed(() => state.matchedCards.length === state.cards.length);
 
   return {
     cards,
     moves,
     timeLeft,
     gameOver,
+    isRunning,
+    isUserWon,
     initializeGame,
+    startGame,
     handleCardFlip,
+    restartGame
   };
 };
