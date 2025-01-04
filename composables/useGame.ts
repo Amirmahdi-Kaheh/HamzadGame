@@ -178,7 +178,7 @@ export const useGame = () => {
   const cards = computed(() => state.cards)
   const gameOver = computed(() => state.gameOver)
   const isRunning = computed(() => state.isRunning)
-  const isUserWon = computed(
+  const isPlayerWon = computed(
     () => state.matchedCards.length === state.cards.length,
   )
 
@@ -189,7 +189,7 @@ export const useGame = () => {
     timeLeft,
     gameOver,
     isRunning,
-    isUserWon,
+    isPlayerWon,
     initializeGame,
     startGame,
     handleCardFlip,

@@ -75,7 +75,7 @@
     <BaseModal v-model="gameOver" @close="initializeGame">
       <template #body>
         <div
-          v-if="isUserWon"
+          v-if="isPlayerWon"
           class="flex flex-col items-center justify-center gap-y-6 text-center"
         >
           <img src="@/assets/images/success.svg" class="dark:invert" alt="" />
@@ -89,7 +89,7 @@
               }}</span>
               <img
                 src="@/assets/images/logo.png"
-                class="w-5 h-5 rotate-45"
+                class="w-5 h-5"
                 loading="lazy"
                 alt=""
               />
@@ -131,7 +131,7 @@ const {
   moves,
   timeLeft,
   isRunning,
-  isUserWon,
+  isPlayerWon,
   startGame,
   restartGame,
   initializeGame,
