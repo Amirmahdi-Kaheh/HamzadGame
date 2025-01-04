@@ -10,10 +10,14 @@
     </div>
 
     <Icon name="svg-spinners:3-dots-scale" size="32" />
+
+    <div class="absolute bottom-4 text-sm opacity-70">نسخه {{ version }}</div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { version } from "../../package.json"
+
 const visible = ref(true)
 
 onMounted(() => {
