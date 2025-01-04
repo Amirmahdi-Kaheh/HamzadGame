@@ -1,22 +1,16 @@
 <template>
   <div class="flex flex-col items-center justify-center">
-    <div class="bg-[#D8C4B6] rounded-xl mt-8 w-full">
-      <div class="border border-[#D8C4B6] bg-[#F5EFE7] w-full p-4 rounded-xl">
-        <FeatureGameStatus :moves="moves" :time="timeLeft"></FeatureGameStatus>
+    <div class="border border-[#D8C4B6] w-full p-4 rounded-xl mt-8">
+      <FeatureGameStatus :moves="moves" :time="timeLeft"></FeatureGameStatus>
 
-        <!-- Game Board -->
-        <div class="grid grid-cols-4 gap-4 w-full">
-          <FeatureCard
-              v-for="card in cards"
-              :key="card.id"
-              :card="card"
-              @flip="handleCardFlip"
-          />
-        </div>
-      </div>
-      <div class="p-4 flex justify-center flex-wrap gap-x-2">
-        <button class="text-sm px-4 py-1 rounded-full bg-[#F5EFE7] active:scale-95 transition-all" :class="{'pointer-events-none opacity-50': moves <= 6}">راهنما (6- حرکت)</button>
-        <button class="text-sm px-4 py-1 rounded-full bg-[#F5EFE7] active:scale-95 transition-all" :class="{'pointer-events-none opacity-50': timeLeft <= 20}">۴ حرکت اضافه (20- ثانیه)</button>
+      <!-- Game Board -->
+      <div class="grid grid-cols-4 gap-4 w-full">
+        <FeatureCard
+            v-for="card in cards"
+            :key="card.id"
+            :card="card"
+            @flip="handleCardFlip"
+        />
       </div>
     </div>
 
@@ -30,6 +24,21 @@
       </BaseButton>
     </div>
 
+    <div class="fixed -bottom-full left-0 p-6 pb-6 w-full flex items-center justify-center transition-all duration-1000" :class="{'!bottom-0': isRunning && !gameOver}">
+      <div class="lg:w-96 w-full grid grid-cols-2 gap-x-4">
+        <!-- Restart Button -->
+        <BaseButton size="medium" class="!bg-black !rounded-xl flex flex-col gap-y-1" :class="{'pointer-events-none opacity-50': moves <= 6}">
+          <Icon name="ph:sneaker-move-fill" size="24"></Icon>
+          <span class="text-base font-semibold">۴ حرکت اضافه</span>
+          <span class="py-1 px-4 rounded-full bg-primary">۲۰ ثانیه</span>
+        </BaseButton>
+        <BaseButton  size="medium" class="!bg-black !rounded-xl flex flex-col gap-y-1" :class="{'pointer-events-none opacity-50': timeLeft <= 20}">
+          <Icon name="ph:clock-countdown-fill" size="24"></Icon>
+          <span class="text-base font-semibold">۱۵ ثانیه اضافه</span>
+          <span class="py-1 px-4 rounded-full bg-primary">۴ حرکت</span>
+        </BaseButton>
+      </div>
+    </div>
 
     <BaseModal v-model="gameOver" @close="initializeGame">
       <template #body>
@@ -39,6 +48,15 @@
           <p>
             تونستی همه همزاد ها رو پیدا کنی! تبریک میگم
           </p>
+          <div class="flex flex-col items-center gap-y-4 my-6">
+            <span>
+            امتیاز کسب شده:
+            </span>
+            <div class="flex items-center justify-center gap-x-4">
+              <img src="@/assets/images/logo.png" class="w-5 h-5 rotate-45" loading="lazy" alt="">
+              <span class="font-bold text-xl">{{formatPrice(calculateReward())}}</span>
+            </div>
+          </div>
           <BaseButton class="w-full" @click="initializeGame">
             امتیاز بیشتر
           </BaseButton>
@@ -60,13 +78,13 @@
 
      <script setup lang="ts">
 import { useGame } from '@/composables/useGame';
+import {formatPrice} from "~/utils/numbers";
 const gameChallengeCookie = useCookie('GameChallenge');
-const { cards, gameOver, moves, timeLeft, isRunning, isUserWon, startGame, restartGame, initializeGame, handleCardFlip } = useGame();
+const { cards, gameOver, moves, timeLeft, isRunning, isUserWon, startGame, restartGame, initializeGame, handleCardFlip, calculateReward } = useGame();
 onMounted(() => initializeGame());
 watch(gameChallengeCookie, ()=> {
   initializeGame()
 })
-
      </script>
 
      <style></style>

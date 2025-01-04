@@ -2,7 +2,7 @@
 const config = useRuntimeConfig();
 const gameChallengeCookie = useCookie('GameChallenge');
 const userChallengeType = ref(gameChallengeCookie.value || 'image')
-const isOpen = ref(false)
+const isOpen = ref<boolean>(false)
 
 function setUserChallengeType(type: string) {
   gameChallengeCookie.value = type;
@@ -24,19 +24,19 @@ function setUserChallengeType(type: string) {
         <div class="mt-8">
           <h4 class="text-lg font-medium">نوع چالش</h4>
           <div class="grid grid-cols-2 gap-x-3 mt-4">
-            <div class="p-4 relative rounded-xl transition-all border-2 border-gray-100 flex flex-col gap-y-2 items-center justify-center hover:border-primary cursor-pointer" @click="setUserChallengeType('emoji')" :class="{'border-primary pointer-events-none': userChallengeType === 'emoji'}">
+            <div class="p-4 relative rounded-xl transition-all bg-white border-2 border-[#D8C4B6] flex flex-col gap-y-2 items-center justify-center hover:border-primary cursor-pointer" @click="setUserChallengeType('emoji')" :class="{'border-primary pointer-events-none': userChallengeType === 'emoji'}">
               <Icon v-if="userChallengeType === 'emoji'" name="ph:check-circle-fill" class="absolute right-2 top-2 text-primary" size="24"></Icon>
               <span class="text-3xl">🐈</span>
               <span class="font-medium">ایموجی</span>
             </div>
-            <div class="p-4 relative rounded-xl transition-all border-2 border-gray-100 flex flex-col gap-y-2 items-center justify-center hover:border-primary cursor-pointer" @click="setUserChallengeType('image')" :class="{'border-primary pointer-events-none': userChallengeType === 'image'}">
+            <div class="p-4 relative rounded-xl transition-all bg-white border-2 border-[#D8C4B6] flex flex-col gap-y-2 items-center justify-center hover:border-primary cursor-pointer" @click="setUserChallengeType('image')" :class="{'border-primary pointer-events-none': userChallengeType === 'image'}">
               <Icon v-if="userChallengeType === 'image'" name="ph:check-circle-fill" class="absolute right-2 top-2 text-primary" size="24"></Icon>
               <img src="/products/product-8.jpg" class="h-10" alt="">
               <span class="font-medium">تصویر</span>
             </div>
           </div>
 
-          <div class="pt-4 mt-4 border-t border-gray-100 flex items-center justify-between">
+          <div class="pt-4 mt-4 border-t border-[#D8C4B6] flex items-center justify-between">
             <span class="text-sm">پیاده سازی توسط مهدیار با ☕️ و ❤️</span>
 
             <nuxt-link :to="config.public.githubRepo" external target="_blank">

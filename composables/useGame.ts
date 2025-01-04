@@ -3,6 +3,7 @@ import { reactive, computed } from 'vue';
 export const useGame = () => {
   const config = useRuntimeConfig()
   const state = reactive({
+    score: 0,
     cards: [],
     flippedCards: [], // Temporarily holds up to two flipped cards
     matchedCards: [], // Stores matched card IDs
@@ -16,6 +17,7 @@ export const useGame = () => {
 
   // Initialize the game
   const initializeGame = () => {
+    setScoreByStorage();
     const cardValues = generateCardValues();
     state.cards = shuffle(cardValues).map((value: string, index: number) => ({
       id: index,
@@ -34,6 +36,7 @@ export const useGame = () => {
     state.timeLeft = config.public.gameTime;
     state.gameOver = false;
     state.isRunning = false;
+    clearInterval(state.timer);
   }
 
   const restartGame = () => {
@@ -112,6 +115,7 @@ export const useGame = () => {
   // Check if the game is over
   const checkGameOver = () => {
     if (state.matchedCards.length === state.cards.length) {
+      updateScoreStorage()
       state.gameOver = true;
       clearInterval(state.timer);
     }
@@ -129,8 +133,24 @@ export const useGame = () => {
     }, 1000);
   };
 
+  const calculateReward = () => {
+    // calculate by timeLeft and moveLeft
+    return state.timeLeft * state.moves
+  }
+
+  const setScoreByStorage = () => {
+    const scoreCookie = useCookie('Score');
+    state.score = scoreCookie.value || 0
+  }
+
+  const updateScoreStorage = () => {
+    const scoreCookie = useCookie('Score');
+    scoreCookie.value = state.score + calculateReward();
+  }
+
   // Computed properties
   const moves = computed(() => state.moves);
+  const score = computed(() => state.score);
   const timeLeft = computed(() => state.timeLeft);
   const cards = computed(() => state.cards);
   const gameOver = computed(() => state.gameOver);
@@ -138,6 +158,7 @@ export const useGame = () => {
   const isUserWon = computed(() => state.matchedCards.length === state.cards.length);
 
   return {
+    score,
     cards,
     moves,
     timeLeft,
@@ -147,6 +168,7 @@ export const useGame = () => {
     initializeGame,
     startGame,
     handleCardFlip,
+    calculateReward,
     restartGame
   };
 };
