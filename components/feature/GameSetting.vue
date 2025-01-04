@@ -14,7 +14,7 @@ function setUserChallengeType(type: string) {
 <template>
   <div>
     <button
-      class="h-12 w-12 flex items-center justify-center rounded-lg border-2 border-[#D8C4B6] active:scale-90 transition-all"
+      class="h-12 w-12 flex items-center justify-center rounded-lg border-2 border-stone-300 active:scale-90 transition-all"
       @click="isOpen = true"
     >
       <Icon name="ph:gear-six-bold" size="20" />
@@ -28,7 +28,7 @@ function setUserChallengeType(type: string) {
           <h4 class="text-lg font-medium">نوع چالش</h4>
           <div class="grid grid-cols-2 gap-x-3 mt-4">
             <div
-              class="p-4 relative rounded-xl transition-all bg-white border-2 border-[#D8C4B6] flex flex-col gap-y-2 items-center justify-center hover:border-primary cursor-pointer"
+              class="p-4 relative rounded-xl transition-all bg-white border-2 border-stone-300 flex flex-col gap-y-2 items-center justify-center hover:border-primary cursor-pointer"
               :class="{
                 'border-primary pointer-events-none':
                   userChallengeType === 'emoji',
@@ -45,7 +45,7 @@ function setUserChallengeType(type: string) {
               <span class="font-medium">ایموجی</span>
             </div>
             <div
-              class="p-4 relative rounded-xl transition-all bg-white border-2 border-[#D8C4B6] flex flex-col gap-y-2 items-center justify-center hover:border-primary cursor-pointer"
+              class="p-4 relative rounded-xl transition-all bg-white border-2 border-stone-300 flex flex-col gap-y-2 items-center justify-center hover:border-primary cursor-pointer"
               :class="{
                 'border-primary pointer-events-none':
                   userChallengeType === 'image',
@@ -64,7 +64,7 @@ function setUserChallengeType(type: string) {
           </div>
 
           <div
-            class="pt-4 mt-4 border-t border-[#D8C4B6] flex items-center justify-between"
+            class="pt-4 mt-4 border-t border-stone-300 flex items-center justify-between"
           >
             <span class="text-sm">پیاده سازی توسط مهدیار با ☕️ و ❤️</span>
 

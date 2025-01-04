@@ -10,7 +10,7 @@
     >
       <!-- Card Front -->
       <div
-        class="card-front w-full h-full bg-[#F5EFE7] flex border border-transparent justify-center items-center text-xl font-bold text-gray-800 rounded-lg shadow-lg shadow-slate-300 absolute backface-hidden"
+        class="card-front w-full h-full bg-orange-50 flex border border-transparent justify-center items-center text-xl font-bold text-gray-800 rounded-lg shadow-lg shadow-slate-300 absolute backface-hidden"
         :class="{ '!border-primary': card.matched }"
       >
         <img

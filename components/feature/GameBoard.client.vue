@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col items-center justify-center">
-    <div class="border border-[#D8C4B6] w-full p-4 rounded-xl mt-8">
+    <div class="border border-stone-300 w-full p-4 rounded-xl mt-8">
       <FeatureGameStatus :moves="moves" :time="timeLeft" />
 
       <!-- Game Board -->
@@ -22,7 +22,8 @@
       <BaseButton
         v-if="!gameOver"
         size="large"
-        class="lg:w-96 w-full !bg-black !rounded-full"
+        variant="secondary"
+        class="lg:w-96 w-full !rounded-full"
         @click="startGame"
       >
         شروع بازی
@@ -30,7 +31,8 @@
       <BaseButton
         v-else
         size="large"
-        class="lg:w-96 w-full !bg-black !rounded-full"
+        variant="secondary"
+        class="lg:w-96 w-full !rounded-full"
         @click="restartGame"
       >
         شروع مجدد
@@ -45,7 +47,8 @@
         <!-- Boost Button -->
         <BaseButton
           size="medium"
-          class="!bg-black !rounded-xl flex flex-col gap-y-1"
+          variant="secondary"
+          class="!rounded-xl flex flex-col gap-y-1"
           :class="{ 'pointer-events-none opacity-50': timeLeft <= 30 }"
           @click="handleBoostMove"
         >
@@ -55,7 +58,8 @@
         </BaseButton>
         <BaseButton
           size="medium"
-          class="!bg-black !rounded-xl flex flex-col gap-y-1"
+          variant="secondary"
+          class="!rounded-xl flex flex-col gap-y-1"
           :class="{ 'pointer-events-none opacity-50': moves <= 6 }"
           @click="handleBoostTime"
         >
