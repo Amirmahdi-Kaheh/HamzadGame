@@ -34,7 +34,7 @@ const emit = defineEmits(["click"])
 }
 
 .base-button.secondary {
-  @apply bg-secondary text-white;
+  @apply bg-secondary dark:bg-stone-800 dark:shadow-xl dark:shadow-black text-white;
 }
 
 .base-button.danger {
