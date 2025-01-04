@@ -1,4 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const colorMode = useColorMode()
+const getIcon = (): string => {
+  return colorMode.preference === "light" ? "ph:moon-stars-fill" : "ph:sun-fill"
+}
+</script>
 
 <template>
   <div>
@@ -8,7 +13,7 @@
         $colorMode.preference = $colorMode.value === 'light' ? 'dark' : 'light'
       "
     >
-      <Icon name="ph:sun-fill" size="20" />
+      <Icon :name="getIcon()" size="20" />
     </button>
   </div>
 </template>
