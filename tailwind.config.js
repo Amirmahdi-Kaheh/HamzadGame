@@ -8,12 +8,13 @@ export default {
     "./app.vue",
     "./error.vue",
   ],
+  darkMode: "class",
   theme: {
     extend: {
       colors: {
         primary: "#ff5c35",
         secondary: "#000000",
-        dark: "#333333",
+        dark: "#121114",
       },
     },
   },

@@ -1,6 +1,8 @@
 <template>
   <div class="flex flex-col items-center justify-center">
-    <div class="border border-stone-300 w-full p-4 rounded-xl mt-8">
+    <div
+      class="border border-stone-300 dark:border-stone-800 w-full p-4 rounded-xl mt-8"
+    >
       <FeatureGameStatus :moves="moves" :time="timeLeft" />
 
       <!-- Game Board -->
@@ -76,7 +78,11 @@
           v-if="isUserWon"
           class="flex flex-col items-center justify-center gap-y-6 text-center"
         >
-          <img src="@/assets/images/errors/processing.svg" alt="" />
+          <img
+            src="@/assets/images/errors/processing.svg"
+            class="dark:invert"
+            alt=""
+          />
           <h4 class="font-bold text-2xl text-green-600">بردی!</h4>
           <p>تونستی همه همزاد ها رو پیدا کنی! تبریک میگم</p>
           <div class="flex flex-col items-center gap-y-4 my-6">
@@ -101,7 +107,11 @@
           v-else
           class="flex flex-col items-center justify-center gap-y-6 text-center"
         >
-          <img src="@/assets/images/errors/fail.svg" alt="" />
+          <img
+            src="@/assets/images/errors/fail.svg"
+            class="dark:invert"
+            alt=""
+          />
           <h4 class="font-bold text-2xl">باختی!</h4>
           <p v-if="moves === 0">
             متاسفانه حرکاتت تموم شد. می تونی مجددا تلاش کنی تا امتیاز بدست بیاری

@@ -43,5 +43,11 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ["@nuxt/icon", "@nuxt/eslint"],
+  modules: ["@nuxt/icon", "@nuxt/eslint", "@nuxtjs/color-mode"],
+
+  colorMode: {
+    classSuffix: "",
+    preference: "light",
+    fallback: "light",
+  },
 })

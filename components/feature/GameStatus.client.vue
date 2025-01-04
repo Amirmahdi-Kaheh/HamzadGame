@@ -1,6 +1,6 @@
 <template>
   <div
-    class="grid grid-cols-2 w-full p-4 py-2 pb-6 border-b border-stone-300 mb-4"
+    class="grid grid-cols-2 w-full p-4 py-2 pb-6 border-b border-stone-300 dark:border-stone-800 mb-4"
   >
     <div class="flex items-center justify-center gap-x-2">
       <span class="text-base">حرکات:</span>

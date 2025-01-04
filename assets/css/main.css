@@ -60,7 +60,6 @@
        }
        body{
          font-family: Pinar, sans-serif;
-         @apply bg-orange-50
-           /* dark:bg-[#333333] dark:text-white */
+         @apply bg-orange-50 dark:bg-dark dark:text-gray-100;
        }
      }

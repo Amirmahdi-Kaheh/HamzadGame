@@ -18,11 +18,7 @@
         />
       </div>
       <FeatureGameSetting />
-      <button
-        class="h-12 w-12 flex items-center justify-center rounded-lg border-2 border-stone-300 active:scale-90 transition-all"
-      >
-        <Icon name="ph:sun-fill" size="20" />
-      </button>
+      <FeatureGameTheme />
     </div>
   </div>
 </template>

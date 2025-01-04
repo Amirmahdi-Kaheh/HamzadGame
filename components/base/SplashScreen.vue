@@ -1,12 +1,12 @@
 <template>
   <div
     v-if="visible"
-    class="fixed top-0 left-0 w-full h-full flex flex-col gap-y-10 items-center justify-center bg-primary text-white z-50"
+    class="fixed top-0 left-0 w-full h-full flex flex-col gap-y-10 items-center justify-center bg-primary text-white dark:text-dark z-50"
   >
     <div
-      class="w-24 h-24 rounded-2xl bg-orange-50 flex items-center justify-center shadow-xl"
+      class="w-24 h-24 rounded-2xl bg-orange-50 dark:bg-dark flex items-center justify-center shadow-xl"
     >
-      <h4 class="font-black text-2xl text-primary">همزاد</h4>
+      <h4 class="font-black text-2xl text-primary dark:text-white">همزاد</h4>
     </div>
 
     <Icon name="svg-spinners:3-dots-scale" size="32" />

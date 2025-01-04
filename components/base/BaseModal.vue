@@ -16,7 +16,7 @@
       @click.self="$emit('close')"
     >
       <div
-        class="lg:p-8 p-6 lg:pb-8 pb-12 rounded-2xl lg:rounded-b-2xl rounded-b-none bg-orange-50 z-10 lg:w-96 w-full"
+        class="lg:p-8 p-6 lg:pb-8 pb-12 rounded-2xl lg:rounded-b-2xl rounded-b-none bg-orange-50 dark:bg-dark z-10 lg:w-96 w-full"
       >
         <slot name="header" />
         <slot name="body" />
