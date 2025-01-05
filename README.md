@@ -132,6 +132,7 @@ The application will be accessible at http://localhost:8080.
 - **Dynamic Difficulty:** Allow users to select difficulty levels.
 - **Leaderboard:** Implement a leaderboard to display top scores.
 - **Sound Effects:** Add sounds for card flips and matches.
+- **Ts full support:** Add typescript full support.
 - **Vitest unit testing:** Add unit test to project.
 
 ## Resources
@@ -150,7 +151,7 @@ Here are some additional resources that you may find helpful:
 For any questions, feedback, or support requests, please feel free to contact me:
 
 - Email: [mahdiar.dev@gmail.com](mailto:mahdiar.dev@gmail.com)
-- GitHub Issues: [Project Issues](https://github.com/Amirmahdi-Kaheh/CurrencyTicker/issues)
+- GitHub Issues: [Project Issues](https://github.com/Amirmahdi-Kaheh/HamzadGame/issues)
 
 I'll appreciate your feedback and will do my best to respond in a timely manner.
 
