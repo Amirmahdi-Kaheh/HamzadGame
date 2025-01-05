@@ -21,13 +21,13 @@ export default defineNuxtConfig({
           content: "width=device-width, initial-scale=1, user-scalable=no",
         },
         { name: "format-detection", content: "telephone=no" },
+        { hid: "robots", name: "robots", content: "noindex" },
       ],
     },
   },
 
   runtimeConfig: {
     public: {
-      githubRepo: process.env.GITHUB_REPO,
       gameMoves: process.env.GAME_MOVES,
       gameTime: process.env.GAME_TIME,
     },

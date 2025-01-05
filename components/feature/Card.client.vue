@@ -6,11 +6,11 @@
   >
     <div
       class="card-inner w-full h-full absolute transition-all duration-500"
-      :class="{ 'rotate-y-180': !flipped }"
+      :class="{ 'rotate-x-180': !flipped }"
     >
       <!-- Card Front -->
       <div
-        class="card-front w-full h-full bg-orange-50 dark:bg-dark flex border border-transparent justify-center items-center text-xl font-bold text-gray-800 rounded-lg dark:shadow-2xl shadow-lg shadow-slate-300 dark:shadow-yellow-950 absolute backface-hidden"
+        class="w-full h-full bg-orange-50 dark:bg-dark flex border border-transparent justify-center items-center text-xl font-bold text-gray-800 rounded-lg dark:shadow-2xl shadow-lg shadow-slate-300 dark:shadow-yellow-950 absolute backface-hidden"
         :class="{ '!border-primary': card.matched }"
       >
         <img
@@ -23,7 +23,7 @@
       </div>
       <!-- Card Back -->
       <div
-        class="card-back w-full h-full bg-primary flex border-2 border-transparent justify-center items-center text-3xl font-bold text-white rounded-lg shadow-lg dark:shadow-2xl shadow-slate-300 dark:shadow-yellow-950 absolute rotate-y-180 backface-hidden"
+        class="w-full h-full bg-primary flex border-2 border-transparent justify-center items-center text-3xl font-bold text-white rounded-lg shadow-lg dark:shadow-2xl shadow-slate-300 dark:shadow-yellow-950 absolute rotate-x-180 backface-hidden"
       >
         {{ card.id + 1 }}
       </div>
@@ -32,7 +32,7 @@
 </template>
 
 <script setup>
-const props = defineProps(["card", "flip"])
+const props = defineProps(["card"])
 const emits = defineEmits(["flip"])
 
 const flipped = computed(() => props.card.flipped || props.card.matched)
@@ -48,7 +48,7 @@ const userChallengeType = computed(() => {
 </script>
 
 <style>
-.rotate-y-180 {
+.rotate-x-180 {
   transform: rotateX(-180deg);
 }
 .perspective {

@@ -11,7 +11,7 @@
         }}</span>
         <img
           src="@/assets/images/logo.png"
-          class="w-3 h-3"
+          class="w-5 h-5"
           loading="lazy"
           alt=""
         />

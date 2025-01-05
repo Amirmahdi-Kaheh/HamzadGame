@@ -1,10 +1,9 @@
 <script setup lang="ts">
-const config = useRuntimeConfig()
 const gameChallengeCookie = useCookie("GameChallenge")
 const userChallengeType = ref(gameChallengeCookie.value || "image")
 const isOpen = ref<boolean>(false)
 
-function setUserChallengeType(type: string) {
+function setUserChallengeType(type: string): void {
   gameChallengeCookie.value = type
   userChallengeType.value = type
   refreshCookie("GameChallenge")
@@ -68,7 +67,11 @@ function setUserChallengeType(type: string) {
           >
             <span class="text-sm">پیاده سازی توسط مهدیار با ☕️ و ❤️</span>
 
-            <nuxt-link :to="config.public.githubRepo" external target="_blank">
+            <nuxt-link
+              to="https://github.com/Amirmahdi-Kaheh/HamzadGame"
+              external
+              target="_blank"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"

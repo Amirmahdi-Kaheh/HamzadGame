@@ -18,7 +18,7 @@
 <script setup lang="ts">
 import { version } from "../../package.json"
 
-const visible = ref(true)
+const visible = ref<boolean>(true)
 
 onMounted(() => {
   setTimeout(() => {
